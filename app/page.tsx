@@ -1,65 +1,50 @@
-import Image from "next/image";
+"use client";
+
+import { NavigationCard } from "@/components/NavigationCard";
+import { BookOpen, Gamepad2, Zap } from "lucide-react";
 
 export default function Home() {
   return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
+    <main className="flex-grow flex flex-col items-center justify-center min-h-screen p-6 sm:p-12 md:p-24 bg-gradient-to-br from-sky-100 via-indigo-50 to-purple-100 overflow-hidden relative">
+      {/* Decorative background elements */}
+      <div className="absolute top-10 left-10 w-32 h-32 bg-yellow-300 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-blob" />
+      <div className="absolute top-10 right-10 w-32 h-32 bg-blue-300 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-blob animation-delay-2000" />
+      <div className="absolute -bottom-8 left-20 w-32 h-32 bg-pink-300 rounded-full mix-blend-multiply filter blur-2xl opacity-50 animate-blob animation-delay-4000" />
+      
+      <div className="relative z-10 flex flex-col items-center space-y-8 md:space-y-12 w-full max-w-5xl">
+        <div className="text-center space-y-4 px-2">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-violet-600 drop-shadow-sm pb-2 leading-tight">
+            Hai, Aku Sparky! ⚡
           </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
+          <p className="text-lg sm:text-xl md:text-3xl font-bold text-slate-600 max-w-2xl mx-auto">
+            Siap belajar keajaiban listrik? Pilih petualanganmu di bawah ini!
           </p>
         </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
+
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 md:gap-8 w-full px-4">
+          <NavigationCard 
+            title="Ayo Belajar!" 
+            href="/learn" 
+            icon={<BookOpen />} 
+            colorClass="bg-gradient-to-br from-blue-400 to-blue-600"
+            delay={0.1}
+          />
+          <NavigationCard 
+            title="Kuis Seru!" 
+            href="/quiz" 
+            icon={<Gamepad2 />} 
+            colorClass="bg-gradient-to-br from-green-400 to-green-600"
+            delay={0.2}
+          />
+          <NavigationCard 
+            title="Buat Menyala!" 
+            href="/simulation" 
+            icon={<Zap />} 
+            colorClass="bg-gradient-to-br from-amber-400 to-orange-500"
+            delay={0.3}
+          />
         </div>
-      </main>
-    </div>
+      </div>
+    </main>
   );
 }
