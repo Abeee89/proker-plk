@@ -207,13 +207,13 @@ export default function Simulation() {
     const isActive = wiringFrom?.compId === compId && wiringFrom?.terminal === terminal;
     return (
       <div
-        className={`absolute w-7 h-7 rounded-full border-[3px] cursor-crosshair flex items-center justify-center transition-all duration-150 z-30 ${
+        className={`absolute w-7 h-7 rounded-full border-[3px] cursor-crosshair flex items-center justify-center transition-all duration-150 z-30 touch-none ${
           isActive 
             ? "bg-yellow-400 border-white scale-150 shadow-[0_0_16px_rgba(250,204,21,0.9)]" 
             : `${color} border-white hover:scale-125 shadow-md`
         }`}
         style={{ left: x - 14, top: y - 14 }}
-        onPointerDown={(e) => { e.stopPropagation(); handleTerminalClick(compId, terminal); }}
+        onPointerDown={(e) => { e.stopPropagation(); e.preventDefault(); handleTerminalClick(compId, terminal); }}
       >
         <div className="w-2 h-2 bg-white rounded-full" />
       </div>
@@ -254,7 +254,7 @@ export default function Simulation() {
         {/* Canvas */}
         <div
           ref={canvasRef}
-          className="flex-1 relative bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px] overflow-hidden"
+          className="flex-1 relative bg-[radial-gradient(#cbd5e1_1px,transparent_1px)] [background-size:20px_20px] overflow-hidden touch-none"
           onPointerMove={handlePointerMove}
           onPointerUp={handlePointerUp}
           onPointerLeave={handlePointerUp}
@@ -271,7 +271,7 @@ export default function Simulation() {
               <div key={comp.id} className="absolute" style={{ left: 0, top: 0 }}>
                 {/* Component body */}
                 <div
-                  className="absolute cursor-grab active:cursor-grabbing z-10"
+                  className="absolute cursor-grab active:cursor-grabbing z-10 touch-none"
                   style={{ left: comp.x, top: comp.y }}
                   onPointerDown={(e) => handlePointerDown(e, comp.id)}
                 >
